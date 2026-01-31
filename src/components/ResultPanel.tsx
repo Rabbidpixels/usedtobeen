@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MangaPanel } from "./MangaPanel";
 import { Share2, Check, Copy } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface ResultPanelProps {
   solved: boolean;
@@ -20,6 +21,16 @@ export const ResultPanel = ({
   onCopyShare
 }: ResultPanelProps) => {
   const [copied, setCopied] = useState(false);
+  const [showVictoryShake, setShowVictoryShake] = useState(false);
+
+  // Trigger victory shake animation when solved
+  useEffect(() => {
+    if (solved) {
+      setShowVictoryShake(true);
+      const timer = setTimeout(() => setShowVictoryShake(false), 600);
+      return () => clearTimeout(timer);
+    }
+  }, [solved]);
 
   if (!solved && !failed) return null;
 
@@ -54,33 +65,46 @@ export const ResultPanel = ({
   };
 
   return (
-    <MangaPanel thick className="animate-panel-slide">
+    <MangaPanel
+      thick
+      className={cn(
+        "relative overflow-hidden",
+        solved && showVictoryShake && "animate-victory-shake"
+      )}
+    >
+      {/* Victory burst effect */}
+      {solved && (
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div className="w-96 h-96 border-[4px] border-foreground/20 rounded-full animate-victory-burst" />
+        </div>
+      )}
+
       <div className="halftone-light">
         <div className="p-8 md:p-12 text-center relative">
           {solved ? (
             <>
-              <h2 className="manga-title text-4xl md:text-6xl mb-4">
+              <h2 className="manga-title text-4xl md:text-6xl mb-4 animate-stamp-in">
                 VICTORY!
               </h2>
-              <p className="font-body text-lg md:text-xl mb-2">
+              <p className="font-body text-lg md:text-xl mb-2 animate-fade-in">
                 Got it in <span className="font-bold">{guessCount}</span> {guessCount === 1 ? "try" : "tries"}!
               </p>
               {streakMessage && (
-                <p className="font-body text-lg text-muted-foreground mb-8">
+                <p className="font-body text-lg text-muted-foreground mb-8 animate-fade-in">
                   {streakMessage}
                 </p>
               )}
             </>
           ) : (
             <>
-              <h2 className="manga-title text-4xl md:text-6xl mb-4">
+              <h2 className="manga-title text-4xl md:text-6xl mb-4 animate-defeat-fade">
                 DEFEAT
               </h2>
-              <p className="font-body text-lg md:text-xl mb-2">
+              <p className="font-body text-lg md:text-xl mb-2 animate-fade-in">
                 The answer was right there... Come back tomorrow.
               </p>
               {streakMessage && (
-                <p className="font-body text-lg text-muted-foreground mb-8">
+                <p className="font-body text-lg text-muted-foreground mb-8 animate-fade-in">
                   {streakMessage}
                 </p>
               )}

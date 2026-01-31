@@ -247,3 +247,181 @@
     paint-order: stroke fill;
   }
 }
+
+/* Additional manga-style animations */
+@keyframes hero-slide {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes victory-shake {
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  10% { transform: translateX(-5px) rotate(-1deg); }
+  20% { transform: translateX(5px) rotate(1deg); }
+  30% { transform: translateX(-5px) rotate(-1deg); }
+  40% { transform: translateX(5px) rotate(1deg); }
+  50% { transform: translateX(-3px) rotate(-0.5deg); }
+  60% { transform: translateX(3px) rotate(0.5deg); }
+  70% { transform: translateX(-2px) rotate(-0.25deg); }
+  80% { transform: translateX(2px) rotate(0.25deg); }
+  90% { transform: translateX(-1px) rotate(0deg); }
+}
+
+@keyframes guess-submit {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.98); }
+  100% { transform: scale(1); }
+}
+
+@keyframes clue-reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(5px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes wrong-guess {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-6px); }
+  80% { transform: translateX(6px); }
+}
+
+@keyframes pulse-border {
+  0%, 100% { box-shadow: 0 0 0 0 hsl(var(--foreground) / 0.4); }
+  50% { box-shadow: 0 0 0 8px hsl(var(--foreground) / 0); }
+}
+
+@keyframes skeleton-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes victory-burst {
+  0% {
+    opacity: 1;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
+
+@keyframes stamp-in {
+  0% {
+    opacity: 0;
+    transform: scale(3) rotate(-15deg);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(0.9) rotate(3deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes defeat-fade {
+  0% {
+    opacity: 0;
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+.animate-hero-slide {
+  animation: hero-slide 0.6s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+.animate-victory-shake {
+  animation: victory-shake 0.6s ease-in-out;
+}
+
+.animate-guess-submit {
+  animation: guess-submit 0.15s ease-out;
+}
+
+.animate-clue-reveal {
+  animation: clue-reveal 0.4s ease-out forwards;
+}
+
+.animate-wrong-guess {
+  animation: wrong-guess 0.4s ease-in-out;
+}
+
+.animate-pulse-border {
+  animation: pulse-border 1.5s ease-in-out infinite;
+}
+
+.animate-victory-burst {
+  animation: victory-burst 0.6s ease-out forwards;
+}
+
+.animate-stamp-in {
+  animation: stamp-in 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.animate-defeat-fade {
+  animation: defeat-fade 0.5s ease-out forwards;
+}
+
+/* Loading skeleton */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    hsl(var(--muted)) 25%,
+    hsl(var(--muted-foreground) / 0.1) 50%,
+    hsl(var(--muted)) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s infinite;
+}
+
+/* Manga panel animation on hover */
+.manga-panel-interactive {
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.manga-panel-interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0 hsl(var(--foreground));
+}

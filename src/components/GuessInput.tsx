@@ -1,5 +1,6 @@
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useRef } from "react";
 import { MangaPanel } from "./MangaPanel";
+import { cn } from "@/lib/utils";
 
 interface GuessInputProps {
   onSubmit: (guess: string) => void;
@@ -8,24 +9,35 @@ interface GuessInputProps {
   guesses: string[];
 }
 
-export const GuessInput = ({ 
-  onSubmit, 
-  disabled, 
+export const GuessInput = ({
+  onSubmit,
+  disabled,
   remainingGuesses,
-  guesses 
+  guesses
 }: GuessInputProps) => {
   const [value, setValue] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (value.trim() && !disabled) {
+      setIsSubmitting(true);
       onSubmit(value);
       setValue("");
+      // Reset animation
+      setTimeout(() => setIsSubmitting(false), 150);
     }
   };
 
   return (
-    <MangaPanel thick className="relative">
+    <MangaPanel
+      thick
+      className={cn(
+        "relative transition-transform",
+        isSubmitting && "animate-guess-submit"
+      )}
+    >
       <div className="p-6 md:p-8">
         <div className="flex items-center justify-between mb-4">
           <span className="font-display text-lg md:text-xl">YOUR GUESS</span>
@@ -33,34 +45,36 @@ export const GuessInput = ({
             {Array.from({ length: 8 }).map((_, i) => (
               <div
                 key={i}
-                className={`
-                  w-3 h-3 border-2 border-foreground
-                  ${i < guesses.length 
-                    ? i === guesses.length - 1 && remainingGuesses === 8 - guesses.length
-                      ? "bg-foreground"
-                      : "bg-foreground"
-                    : "bg-background"
-                  }
-                `}
+                className={cn(
+                  "w-3 h-3 border-2 border-foreground transition-all duration-200",
+                  i < guesses.length ? "bg-foreground scale-100" : "bg-background",
+                  i === guesses.length - 1 && "animate-pulse-border"
+                )}
               />
             ))}
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4">
+        <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4">
           <input
             type="text"
             value={value}
             onChange={(e) => setValue(e.target.value)}
             placeholder="Enter anime title..."
             disabled={disabled}
-            className="manga-input flex-1 disabled:opacity-50"
+            className={cn(
+              "manga-input flex-1 disabled:opacity-50 transition-all",
+              value.trim() && "animate-pulse-border"
+            )}
             autoComplete="off"
           />
           <button
             type="submit"
             disabled={disabled || !value.trim()}
-            className="manga-button-filled disabled:opacity-50 disabled:cursor-not-allowed"
+            className={cn(
+              "manga-button-filled disabled:opacity-50 disabled:cursor-not-allowed",
+              "transition-transform active:scale-95"
+            )}
           >
             GUESS
           </button>
@@ -77,7 +91,11 @@ export const GuessInput = ({
             <p className="font-display text-sm mb-3">PREVIOUS GUESSES</p>
             <div className="flex flex-wrap gap-2">
               {guesses.map((guess, i) => (
-                <span key={i} className="clue-badge line-through opacity-60">
+                <span
+                  key={i}
+                  className="clue-badge line-through opacity-60 animate-fade-in"
+                  style={{ animationDelay: `${i * 50}ms` }}
+                >
                   {guess}
                 </span>
               ))}
