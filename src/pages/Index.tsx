@@ -1,11 +1,80 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useGameState } from "@/hooks/useGameState";
+import { HeroPanel } from "@/components/HeroPanel";
+import { PuzzlePanel } from "@/components/PuzzlePanel";
+import { CluePanel } from "@/components/CluePanel";
+import { GuessInput } from "@/components/GuessInput";
+import { ResultPanel } from "@/components/ResultPanel";
+import { Footer } from "@/components/Footer";
 
 const Index = () => {
+  const {
+    puzzle,
+    gameState,
+    isShaking,
+    showImpact,
+    submitGuess,
+    getVisibleClues,
+    generateShareText,
+    remainingGuesses,
+  } = useGameState();
+
+  const visibleClues = getVisibleClues();
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+    <div className="min-h-screen bg-background">
+      <div className="container max-w-5xl py-6 md:py-12">
+        {/* Hero Section */}
+        <HeroPanel />
+
+        {/* Puzzle Section */}
+        <div className="mt-6 md:mt-8">
+          <PuzzlePanel
+            title={puzzle.title}
+            solved={gameState.solved}
+            failed={gameState.failed}
+            isShaking={isShaking}
+            showImpact={showImpact}
+          />
+        </div>
+
+        {/* Clues Grid - Manga Panel Layout */}
+        <div className="mt-6 md:mt-8 grid grid-cols-2 gap-4 md:gap-6">
+          {visibleClues.map((clueKey, index) => (
+            <CluePanel
+              key={clueKey}
+              clueKey={clueKey}
+              clueValue={puzzle.clues[clueKey]}
+              index={index}
+              isNew={index === visibleClues.length - 1 && gameState.guesses.length > 0}
+            />
+          ))}
+        </div>
+
+        {/* Guess Input */}
+        {!gameState.solved && !gameState.failed && (
+          <div className="mt-6 md:mt-8">
+            <GuessInput
+              onSubmit={submitGuess}
+              disabled={gameState.solved || gameState.failed}
+              remainingGuesses={remainingGuesses}
+              guesses={gameState.guesses}
+            />
+          </div>
+        )}
+
+        {/* Result Panel */}
+        <div className="mt-6 md:mt-8">
+          <ResultPanel
+            solved={gameState.solved}
+            failed={gameState.failed}
+            guessCount={gameState.guesses.length}
+            streak={gameState.streak}
+            shareText={generateShareText()}
+          />
+        </div>
+
+        {/* Footer */}
+        <Footer />
       </div>
     </div>
   );
