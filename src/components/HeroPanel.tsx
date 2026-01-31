@@ -1,13 +1,8 @@
 import { useState } from "react";
 import { MangaPanel } from "./MangaPanel";
 import { ThemeToggle } from "./ThemeToggle";
-import { Category } from "@/data/animeData";
 
-interface HeroPanelProps {
-  category?: Category;
-}
-
-export const HeroPanel = ({ category }: HeroPanelProps) => {
+export const HeroPanel = () => {
   const [imageError, setImageError] = useState(false);
 
   return (
@@ -33,11 +28,6 @@ export const HeroPanel = ({ category }: HeroPanelProps) => {
                   day: "numeric"
                 })}
               </span>
-              {category && (
-                <span className="clue-badge text-[10px] md:text-xs">
-                  {category}
-                </span>
-              )}
             </div>
             <ThemeToggle />
           </div>
@@ -56,11 +46,6 @@ export const HeroPanel = ({ category }: HeroPanelProps) => {
                     day: "numeric"
                   })}
                 </span>
-                {category && (
-                  <span className="clue-badge text-[10px] md:text-xs">
-                    {category}
-                  </span>
-                )}
               </div>
               <ThemeToggle />
             </div>

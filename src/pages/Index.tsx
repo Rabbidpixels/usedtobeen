@@ -9,7 +9,6 @@ import { Footer } from "@/components/Footer";
 const Index = () => {
   const {
     puzzle,
-    category,
     gameState,
     isShaking,
     showImpact,
@@ -28,7 +27,7 @@ const Index = () => {
     <div className="min-h-screen bg-page">
       <div className="container max-w-5xl py-6 md:py-12">
         {/* Hero Section */}
-        <HeroPanel category={category} />
+        <HeroPanel />
 
         {/* Puzzle Section */}
         <div className="mt-6 md:mt-8">
