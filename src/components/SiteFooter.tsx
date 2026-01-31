@@ -1,30 +1,14 @@
 import { Link } from "react-router-dom";
 import { MangaPanel } from "./MangaPanel";
 
-export const Footer = () => {
+export const SiteFooter = () => {
   const currentYear = new Date().getFullYear();
 
   return (
     <MangaPanel className="mt-8">
       <div className="p-6 flex flex-col items-center gap-6">
-        <div className="font-body text-sm text-muted-foreground text-center">
-          New puzzle every day at midnight
-        </div>
-        <a
-          href="https://www.facebook.com/profile.php?id=61587474022583"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block transition-opacity hover:opacity-80"
-        >
-          <img
-            src="/footer.png"
-            alt="Follow us on Facebook"
-            className="h-48 md:h-60 w-auto object-contain"
-          />
-        </a>
-
         {/* Navigation Links */}
-        <nav className="flex flex-wrap justify-center gap-4 md:gap-6 pt-4 border-t-2 border-foreground w-full">
+        <nav className="flex flex-wrap justify-center gap-4 md:gap-6">
           <Link
             to="/"
             className="font-display text-sm hover:underline underline-offset-4"
