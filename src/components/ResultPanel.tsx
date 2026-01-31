@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { MangaPanel } from "./MangaPanel";
-import { Share2, Check, Copy } from "lucide-react";
+import { Share2, Check, Copy, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface ResultPanelProps {
   solved: boolean;
   failed: boolean;
   guessCount: number;
+  maxGuesses?: number;
   streakMessage: string | null;
   shareText: string;
   onCopyShare: () => Promise<boolean>;
@@ -16,6 +17,7 @@ export const ResultPanel = ({
   solved,
   failed,
   guessCount,
+  maxGuesses = 8,
   streakMessage,
   shareText,
   onCopyShare
@@ -64,6 +66,38 @@ export const ResultPanel = ({
     }
   };
 
+  // Generate result boxes
+  const renderResultBoxes = () => {
+    const boxes = [];
+    for (let i = 0; i < maxGuesses; i++) {
+      const isUsed = i < guessCount;
+      const isWinningGuess = i === guessCount - 1 && solved;
+
+      boxes.push(
+        <div
+          key={i}
+          className={cn(
+            "w-8 h-8 md:w-10 md:h-10 border-2 border-foreground flex items-center justify-center transition-all",
+            isUsed
+              ? isWinningGuess
+                ? "bg-green-500 dark:bg-green-600"
+                : "bg-foreground"
+              : "bg-background"
+          )}
+        >
+          {isUsed && (
+            isWinningGuess ? (
+              <Check className="w-5 h-5 md:w-6 md:h-6 text-white" strokeWidth={3} />
+            ) : (
+              <X className="w-5 h-5 md:w-6 md:h-6 text-background" strokeWidth={3} />
+            )
+          )}
+        </div>
+      );
+    }
+    return boxes;
+  };
+
   return (
     <MangaPanel
       thick
@@ -87,10 +121,10 @@ export const ResultPanel = ({
                 VICTORY!
               </h2>
               <p className="font-body text-lg md:text-xl mb-2 animate-fade-in">
-                Got it in <span className="font-bold">{guessCount}</span> {guessCount === 1 ? "try" : "tries"}!
+                Solved in <span className="font-bold">{guessCount}</span> {guessCount === 1 ? "try" : "tries"}!
               </p>
               {streakMessage && (
-                <p className="font-body text-lg text-muted-foreground mb-8 animate-fade-in">
+                <p className="font-body text-lg text-muted-foreground mb-6 animate-fade-in">
                   {streakMessage}
                 </p>
               )}
@@ -104,12 +138,17 @@ export const ResultPanel = ({
                 The answer was right there... Come back tomorrow.
               </p>
               {streakMessage && (
-                <p className="font-body text-lg text-muted-foreground mb-8 animate-fade-in">
+                <p className="font-body text-lg text-muted-foreground mb-6 animate-fade-in">
                   {streakMessage}
                 </p>
               )}
             </>
           )}
+
+          {/* Result boxes in a single line */}
+          <div className="flex justify-center gap-1 md:gap-2 mb-8">
+            {renderResultBoxes()}
+          </div>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center mb-8">
             <button
@@ -129,7 +168,7 @@ export const ResultPanel = ({
           </div>
 
           <div className="p-4 border-2 border-foreground bg-background">
-            <pre className="font-body text-sm text-left whitespace-pre-wrap">
+            <pre className="font-body text-sm text-center whitespace-pre-wrap">
               {shareText}
             </pre>
           </div>

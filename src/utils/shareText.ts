@@ -12,8 +12,69 @@ export interface ShareTextParams {
 }
 
 /**
- * Generate Wordle-style emoji blocks for guess visualization
- * 🟩 = winning guess, ⬛ = wrong guess, ⬜ = unused guess
+ * Get an engaging message based on the number of tries
+ */
+export function getResultMessage(guessCount: number, solved: boolean): string {
+  if (!solved) {
+    // Failed messages
+    const failMessages = [
+      "This one fought back.",
+      "Absolutely brutal.",
+      "That was humbling.",
+      "I refused to quit... but lost.",
+      "Harder than it looks.",
+    ];
+    return failMessages[Math.floor(Math.random() * failMessages.length)];
+  }
+
+  // Success messages by tier
+  if (guessCount === 1) {
+    const firstTryMessages = [
+      "First try. No hints needed.",
+      "One shot. Nailed it.",
+      "First guess. Too easy.",
+      "One and done.",
+      "First try supremacy.",
+      "First try. I'm built different.",
+    ];
+    return firstTryMessages[Math.floor(Math.random() * firstTryMessages.length)];
+  }
+
+  if (guessCount <= 3) {
+    const quickMessages = [
+      `Got it in ${guessCount} tries!`,
+      `Locked it in on try #${guessCount}.`,
+      `Figured it out in ${guessCount} attempts.`,
+      `Dialed it in on try ${guessCount}.`,
+    ];
+    return quickMessages[Math.floor(Math.random() * quickMessages.length)];
+  }
+
+  if (guessCount <= 6) {
+    const midMessages = [
+      `That took ${guessCount} tries.`,
+      "Persistence paid off.",
+      "Had to think on that one.",
+      "Finally cracked it.",
+      "Not easy — but I got it.",
+    ];
+    return midMessages[Math.floor(Math.random() * midMessages.length)];
+  }
+
+  // 7-8 tries
+  const hardMessages = [
+    "This one fought back.",
+    "Absolutely brutal. Still solved it.",
+    "I refused to quit.",
+    "That was humbling.",
+    "Close call but I got it.",
+  ];
+  return hardMessages[Math.floor(Math.random() * hardMessages.length)];
+}
+
+/**
+ * Generate result boxes in a single line
+ * ❌ = wrong guess, ✅ = correct guess, ⬜ = unused
  */
 export function generateGuessBlocks(
   guessCount: number,
@@ -26,9 +87,9 @@ export function generateGuessBlocks(
     if (i < guessCount) {
       // This guess was used
       if (i === guessCount - 1 && solved) {
-        blocks.push("🟩"); // Green for winning guess
+        blocks.push("✅"); // Green checkmark for winning guess
       } else {
-        blocks.push("⬛"); // Black for wrong guess
+        blocks.push("❌"); // X for wrong guess
       }
     } else {
       blocks.push("⬜"); // White for unused
@@ -36,21 +97,6 @@ export function generateGuessBlocks(
   }
 
   return blocks.join("");
-}
-
-/**
- * Format blocks into rows for visual appeal
- * Default: 2 rows of 4 blocks each
- */
-export function formatBlocksAsRows(
-  blocks: string,
-  blocksPerRow: number = 4
-): string {
-  const rows: string[] = [];
-  for (let i = 0; i < blocks.length; i += blocksPerRow) {
-    rows.push(blocks.slice(i, i + blocksPerRow));
-  }
-  return rows.join("\n");
 }
 
 /**
@@ -63,17 +109,20 @@ export function generateShareText({
   maxGuesses = 8,
   siteUrl = "https://anihunter.com"
 }: ShareTextParams): string {
-  // Header with date and result
-  const resultEmoji = solved ? "🎯" : "💀";
-  const scoreDisplay = solved ? `${guessCount}/${maxGuesses}` : `X/${maxGuesses}`;
-  const header = `ANIHUNTER ${date}\n${resultEmoji} ${scoreDisplay}`;
+  // Get engaging message
+  const message = getResultMessage(guessCount, solved);
 
-  // Generate and format blocks
+  // Score display
+  const scoreEmoji = solved ? "🏆" : "💀";
+  const scoreText = solved
+    ? `Solved in ${guessCount} ${guessCount === 1 ? "try" : "tries"} ${scoreEmoji}`
+    : `Failed ${scoreEmoji}`;
+
+  // Generate blocks in a single line
   const blocks = generateGuessBlocks(guessCount, solved, maxGuesses);
-  const formattedBlocks = formatBlocksAsRows(blocks, 4);
 
   // Combine all parts
-  return `${header}\n\n${formattedBlocks}\n\n${siteUrl}`;
+  return `ANIHUNTER ${date}\n\n${message}\n\n${scoreText}\n${blocks}\n\n${siteUrl}`;
 }
 
 /**
@@ -86,11 +135,11 @@ export function generateShortShareText({
   maxGuesses = 8,
   siteUrl = "https://anihunter.com"
 }: ShareTextParams): string {
-  const resultEmoji = solved ? "🎯" : "💀";
+  const scoreEmoji = solved ? "🏆" : "💀";
   const scoreDisplay = solved ? `${guessCount}/${maxGuesses}` : `X/${maxGuesses}`;
   const blocks = generateGuessBlocks(guessCount, solved, maxGuesses);
 
-  return `ANIHUNTER ${date} ${resultEmoji} ${scoreDisplay} ${blocks} ${siteUrl}`;
+  return `ANIHUNTER ${date} ${scoreEmoji} ${scoreDisplay} ${blocks} ${siteUrl}`;
 }
 
 /**
@@ -113,18 +162,34 @@ export function generateCustomShareText({
   return baseText;
 }
 
-// Example usage:
-// const text = generateShareText({
-//   date: "2026-01-31",
-//   solved: true,
-//   guessCount: 3
-// });
+// Example outputs:
 //
-// Output:
+// First try win:
 // ANIHUNTER 2026-01-31
-// 🎯 3/8
 //
-// ⬛⬛🟩⬜
-// ⬜⬜⬜⬜
+// First try. No hints needed.
+//
+// Solved in 1 try 🏆
+// ✅⬜⬜⬜⬜⬜⬜⬜
+//
+// https://anihunter.com
+//
+// 3 tries:
+// ANIHUNTER 2026-01-31
+//
+// Got it in 3 tries!
+//
+// Solved in 3 tries 🏆
+// ❌❌✅⬜⬜⬜⬜⬜
+//
+// https://anihunter.com
+//
+// Failed:
+// ANIHUNTER 2026-01-31
+//
+// This one fought back.
+//
+// Failed 💀
+// ❌❌❌❌❌❌❌❌
 //
 // https://anihunter.com
