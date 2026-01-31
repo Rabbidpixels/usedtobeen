@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { getTodaysPuzzle, getTodaysCategory, clueOrder, AnimeData, Category, getTodayString } from "@/data/animeData";
+import { generateShareText as createShareText } from "@/utils/shareText";
 
 interface GameState {
   guesses: string[];
@@ -134,32 +135,12 @@ export const useGameState = () => {
   const generateShareText = useCallback(() => {
     if (!gameState.solved && !gameState.failed) return "";
 
-    const today = getTodayString();
-    const guessCount = gameState.guesses.length;
-
-    // Generate Wordle-style block grid
-    // Each row represents a guess: filled block for correct, empty for wrong
-    const blocks = gameState.guesses.map((_, i) => {
-      const isLastGuess = i === guessCount - 1;
-      if (isLastGuess && gameState.solved) {
-        return "🟩"; // Green for winning guess
-      }
-      return "⬛"; // Black for wrong guesses
-    }).join("");
-
-    // Add empty boxes for unused guesses (shows how many guesses were left)
-    const remainingBoxes = "⬜".repeat(MAX_GUESSES - guessCount);
-    const fullGrid = blocks + remainingBoxes;
-
-    // Format as 2 rows of 4 for visual appeal
-    const row1 = fullGrid.slice(0, 4);
-    const row2 = fullGrid.slice(4, 8);
-
-    const result = gameState.solved
-      ? `ANIHUNTER ${today}\n🎯 ${guessCount}/${MAX_GUESSES}`
-      : `ANIHUNTER ${today}\n💀 X/${MAX_GUESSES}`;
-
-    return `${result}\n\n${row1}\n${row2}\n\nhttps://anihunter.com`;
+    return createShareText({
+      date: getTodayString(),
+      solved: gameState.solved,
+      guessCount: gameState.guesses.length,
+      maxGuesses: MAX_GUESSES,
+    });
   }, [gameState]);
 
   const getStreakMessage = useCallback(() => {
