@@ -4,75 +4,109 @@ const Privacy = () => {
   return (
     <PageLayout title="Privacy Policy">
       <p className="text-lg mb-6">
-        Hey there! We want to be upfront about how AniHunter handles your data.
-        No confusing legal jargon here — just straight talk about what we collect
-        and why.
+        We believe in being transparent about data. Here's the plain-English
+        version of what AniHunter collects, why, and how you stay in control.
       </p>
 
-      <h2 className="font-display text-xl mt-8 mb-4">What We Store Locally</h2>
+      <h2 className="font-display text-xl mt-8 mb-4">The Short Version</h2>
       <p className="mb-4">
-        AniHunter uses your browser's localStorage to save your game progress,
-        streaks, and preferences (like dark mode). This data never leaves your
-        device — it stays right there in your browser. If you clear your browser
-        data, your progress resets. That's it.
+        AniHunter is a free trivia game. We don't require accounts or collect
+        personal information like your name or email. We use cookies for ads
+        and save your game progress locally on your device. That's the gist.
       </p>
 
-      <h2 className="font-display text-xl mt-8 mb-4">Cookies</h2>
+      <h2 className="font-display text-xl mt-8 mb-4">What We Store on Your Device</h2>
       <p className="mb-4">
-        We use cookies to remember your preferences and keep the site running
-        smoothly. These are small files stored on your device that help us
-        recognize you when you come back. Nothing creepy, just the basics to
-        make your experience better.
+        We use localStorage (a browser feature) to save:
+      </p>
+      <ul className="list-disc list-inside mb-4 space-y-1">
+        <li>Your current game progress and guess history</li>
+        <li>Your win streak and stats</li>
+        <li>Your theme preference (light or dark mode)</li>
+      </ul>
+      <p className="mb-4">
+        This data stays on your device and is never sent to our servers. If you
+        clear your browser data or switch devices, this information resets.
       </p>
 
-      <h2 className="font-display text-xl mt-8 mb-4">Advertising</h2>
+      <h2 className="font-display text-xl mt-8 mb-4">Cookies and Advertising</h2>
       <p className="mb-4">
-        We use Google AdSense to display ads on AniHunter. Google and its partners
-        may use cookies to serve ads based on your browsing history. You can opt
-        out of personalized advertising by visiting{" "}
-        <a
-          href="https://www.google.com/settings/ads"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline hover:no-underline"
-        >
-          Google's Ad Settings
-        </a>
-        .
+        We display ads through Google AdSense to keep AniHunter free. Google
+        and its advertising partners use cookies to show you relevant ads based
+        on your interests and browsing activity across websites.
       </p>
       <p className="mb-4">
-        Third-party vendors, including Google, use cookies to serve ads based on
-        your prior visits to this website or other websites. You can also opt out
-        of third-party vendor cookies by visiting the{" "}
-        <a
-          href="https://optout.networkadvertising.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline hover:no-underline"
-        >
-          Network Advertising Initiative opt-out page
-        </a>
-        .
+        You can control personalized advertising:
       </p>
+      <ul className="list-disc list-inside mb-4 space-y-1">
+        <li>
+          <a
+            href="https://www.google.com/settings/ads"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:no-underline"
+          >
+            Google Ad Settings
+          </a>
+          {" "}— manage Google's ad personalization
+        </li>
+        <li>
+          <a
+            href="https://optout.networkadvertising.org/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:no-underline"
+          >
+            NAI Opt-Out
+          </a>
+          {" "}— opt out of interest-based ads from participating networks
+        </li>
+        <li>
+          <a
+            href="https://optout.aboutads.info/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:no-underline"
+          >
+            DAA Opt-Out
+          </a>
+          {" "}— Digital Advertising Alliance opt-out tool
+        </li>
+      </ul>
 
       <h2 className="font-display text-xl mt-8 mb-4">Analytics</h2>
       <p className="mb-4">
-        We may use analytics tools to understand how people use AniHunter — stuff
-        like which pages are popular and how long people play. This helps us make
-        the game better. The data is aggregated and doesn't personally identify you.
+        We use analytics to understand how people play AniHunter — things like
+        page views, popular features, and general usage patterns. This data is
+        aggregated and anonymous. We can't identify individual visitors.
       </p>
 
-      <h2 className="font-display text-xl mt-8 mb-4">Your Consent</h2>
+      <h2 className="font-display text-xl mt-8 mb-4">Children's Privacy</h2>
       <p className="mb-4">
-        By using AniHunter, you're agreeing to this privacy policy. If we make
-        any significant changes, we'll update this page. We won't suddenly start
-        doing anything weird with your data — this is just a trivia game, after all.
+        AniHunter is designed for general audiences. We do not knowingly collect
+        personal information from children under 13. Since we don't require
+        registration or collect identifying information, children can play
+        without providing personal data. If you believe a child has somehow
+        submitted personal information to us, please contact us and we'll
+        remove it promptly.
       </p>
 
-      <h2 className="font-display text-xl mt-8 mb-4">Questions?</h2>
+      <h2 className="font-display text-xl mt-8 mb-4">Your Rights</h2>
       <p className="mb-4">
-        If you have any questions about how we handle your data, feel free to
-        reach out at{" "}
+        Since your game data is stored locally on your device, you have full
+        control. You can clear it anytime through your browser settings. For
+        ad-related data, use the opt-out links above.
+      </p>
+
+      <h2 className="font-display text-xl mt-8 mb-4">Changes to This Policy</h2>
+      <p className="mb-4">
+        If we update this policy, we'll revise the date below. We won't make
+        changes that reduce your privacy protections without notice.
+      </p>
+
+      <h2 className="font-display text-xl mt-8 mb-4">Contact</h2>
+      <p className="mb-4">
+        Questions about privacy? Email us at{" "}
         <a
           href="mailto:contact@anihunter.com"
           className="underline hover:no-underline"
