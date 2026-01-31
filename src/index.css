@@ -425,3 +425,17 @@
   transform: translateY(-2px);
   box-shadow: 4px 4px 0 hsl(var(--foreground));
 }
+
+/* Bouncing arrow animation */
+@keyframes bounce-arrow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+.animate-bounce-arrow {
+  animation: bounce-arrow 1s ease-in-out infinite;
+}

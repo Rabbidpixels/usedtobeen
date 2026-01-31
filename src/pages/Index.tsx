@@ -3,6 +3,7 @@ import { HeroPanel } from "@/components/HeroPanel";
 import { PuzzlePanel } from "@/components/PuzzlePanel";
 import { CluePanel } from "@/components/CluePanel";
 import { GuessInput } from "@/components/GuessInput";
+import { HintsSeparator } from "@/components/HintsSeparator";
 import { ResultPanel } from "@/components/ResultPanel";
 import { Footer } from "@/components/Footer";
 
@@ -41,6 +42,21 @@ const Index = () => {
           />
         </div>
 
+        {/* Guess Input - Moved above hints */}
+        {!gameState.solved && !gameState.failed && (
+          <div className="mt-6 md:mt-8">
+            <GuessInput
+              onSubmit={submitGuess}
+              disabled={gameState.solved || gameState.failed}
+              remainingGuesses={remainingGuesses}
+              guesses={gameState.guesses}
+            />
+          </div>
+        )}
+
+        {/* Hints Separator */}
+        {!gameState.solved && !gameState.failed && <HintsSeparator />}
+
         {/* Clues Grid - Manga Panel Layout */}
         <div className="mt-6 md:mt-8 grid grid-cols-2 gap-4 md:gap-6">
           {visibleClues.map((clueKey, index) => (
@@ -53,18 +69,6 @@ const Index = () => {
             />
           ))}
         </div>
-
-        {/* Guess Input */}
-        {!gameState.solved && !gameState.failed && (
-          <div className="mt-6 md:mt-8">
-            <GuessInput
-              onSubmit={submitGuess}
-              disabled={gameState.solved || gameState.failed}
-              remainingGuesses={remainingGuesses}
-              guesses={gameState.guesses}
-            />
-          </div>
-        )}
 
         {/* Result Panel */}
         <div className="mt-6 md:mt-8">
