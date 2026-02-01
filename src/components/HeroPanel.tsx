@@ -19,16 +19,29 @@ export const HeroPanel = () => {
           <ThemeToggle />
         </div>
 
-        <h1 className="manga-title-lg text-5xl md:text-7xl lg:text-8xl leading-none mb-6 animate-hero-slide">
-          used
-          <br />
-          <span className="manga-title-outline">tobeen</span>
-        </h1>
+        <div className="flex flex-col md:flex-row items-center gap-6 md:gap-10">
+          {/* Hero Image */}
+          <div className="flex-shrink-0">
+            <img
+              src="/hero.png"
+              alt="usedtobeen"
+              className="w-32 h-32 md:w-48 md:h-48 object-contain"
+            />
+          </div>
 
-        <p className="font-body text-lg md:text-xl max-w-md font-medium animate-fade-in">
-          Guess the thing that used to be. You get 8 chances.{" "}
-          <span className="font-bold">You remember this. Or maybe you don't.</span>
-        </p>
+          <div>
+            <h1 className="manga-title-lg text-5xl md:text-7xl lg:text-8xl leading-none mb-6 animate-hero-slide">
+              used
+              <br />
+              <span className="manga-title-outline">tobeen</span>
+            </h1>
+
+            <p className="font-body text-lg md:text-xl max-w-md font-medium animate-fade-in">
+              Guess the thing that used to be. You get 8 chances.{" "}
+              <span className="font-bold">You remember this. Or maybe you don't.</span>
+            </p>
+          </div>
+        </div>
       </div>
 
       {/* Decorative speed lines */}

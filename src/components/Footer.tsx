@@ -39,6 +39,19 @@ export const Footer = () => {
           </Link>
         </nav>
 
+        {/* Social Links */}
+        <div className="flex justify-center gap-4 pt-4 border-t-2 border-foreground w-full">
+          <a
+            href="https://www.facebook.com/profile.php?id=61587457495365"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:opacity-80 transition-opacity"
+            aria-label="Follow us on Facebook"
+          >
+            <img src="/facebook.png" alt="Facebook" className="w-8 h-8 object-contain" />
+          </a>
+        </div>
+
         {/* Copyright */}
         <p className="font-body text-xs text-muted-foreground text-center">
           © {currentYear} usedtobeen
