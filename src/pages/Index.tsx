@@ -1,5 +1,6 @@
 import { useGameState } from "@/hooks/useGameState";
 import { HeroPanel } from "@/components/HeroPanel";
+import { CategoryPanel } from "@/components/CategoryPanel";
 import { PuzzlePanel } from "@/components/PuzzlePanel";
 import { CluePanel } from "@/components/CluePanel";
 import { GuessInput } from "@/components/GuessInput";
@@ -29,6 +30,9 @@ const Index = () => {
       <div className="container max-w-5xl py-6 md:py-12">
         {/* Hero Section */}
         <HeroPanel />
+
+        {/* Today's Category */}
+        <CategoryPanel category={puzzle.category} />
 
         {/* Puzzle Section */}
         <div className="mt-6 md:mt-8">
