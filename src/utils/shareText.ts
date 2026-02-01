@@ -1,6 +1,6 @@
 /**
- * Generates plain-text social share content for AniHunter game results
- * No HTML, no markdown - just clean text suitable for any platform
+ * Generates engaging social share content for AniHunter game results
+ * Designed for maximum shareability with emotional copy
  */
 
 export interface ShareTextParams {
@@ -8,73 +8,11 @@ export interface ShareTextParams {
   solved: boolean;        // Whether the puzzle was solved
   guessCount: number;     // Number of guesses made (1-8)
   maxGuesses?: number;    // Maximum guesses allowed (default: 8)
-  siteUrl?: string;       // Site URL to include (default: https://anihunter.com)
+  siteUrl?: string;       // Site URL to include (default: anihunter.com)
 }
 
 /**
- * Get an engaging message based on the number of tries
- */
-export function getResultMessage(guessCount: number, solved: boolean): string {
-  if (!solved) {
-    // Failed messages
-    const failMessages = [
-      "This one fought back.",
-      "Absolutely brutal.",
-      "That was humbling.",
-      "I refused to quit... but lost.",
-      "Harder than it looks.",
-    ];
-    return failMessages[Math.floor(Math.random() * failMessages.length)];
-  }
-
-  // Success messages by tier
-  if (guessCount === 1) {
-    const firstTryMessages = [
-      "First try. No hints needed.",
-      "One shot. Nailed it.",
-      "First guess. Too easy.",
-      "One and done.",
-      "First try supremacy.",
-      "First try. I'm built different.",
-    ];
-    return firstTryMessages[Math.floor(Math.random() * firstTryMessages.length)];
-  }
-
-  if (guessCount <= 3) {
-    const quickMessages = [
-      `Got it in ${guessCount} tries!`,
-      `Locked it in on try #${guessCount}.`,
-      `Figured it out in ${guessCount} attempts.`,
-      `Dialed it in on try ${guessCount}.`,
-    ];
-    return quickMessages[Math.floor(Math.random() * quickMessages.length)];
-  }
-
-  if (guessCount <= 6) {
-    const midMessages = [
-      `That took ${guessCount} tries.`,
-      "Persistence paid off.",
-      "Had to think on that one.",
-      "Finally cracked it.",
-      "Not easy — but I got it.",
-    ];
-    return midMessages[Math.floor(Math.random() * midMessages.length)];
-  }
-
-  // 7-8 tries
-  const hardMessages = [
-    "This one fought back.",
-    "Absolutely brutal. Still solved it.",
-    "I refused to quit.",
-    "That was humbling.",
-    "Close call but I got it.",
-  ];
-  return hardMessages[Math.floor(Math.random() * hardMessages.length)];
-}
-
-/**
- * Generate result boxes in a single line
- * ❌ = wrong guess, ✅ = correct guess, ⬜ = unused
+ * Generate result blocks - green for correct, black for wrong, white for unused
  */
 export function generateGuessBlocks(
   guessCount: number,
@@ -85,14 +23,13 @@ export function generateGuessBlocks(
 
   for (let i = 0; i < maxGuesses; i++) {
     if (i < guessCount) {
-      // This guess was used
       if (i === guessCount - 1 && solved) {
-        blocks.push("✅"); // Green checkmark for winning guess
+        blocks.push("🟩"); // Green for winning guess
       } else {
-        blocks.push("❌"); // X for wrong guess
+        blocks.push("⬛"); // Black for wrong guess
       }
     } else {
-      blocks.push("⬜"); // White for unused
+      blocks.push("⬛"); // Black for unused (cleaner look)
     }
   }
 
@@ -100,96 +37,126 @@ export function generateGuessBlocks(
 }
 
 /**
+ * Get header emoji and tagline based on result
+ */
+function getShareHeader(guessCount: number, solved: boolean): { emoji: string; tagline: string } {
+  if (!solved) {
+    return {
+      emoji: "😵",
+      tagline: "I missed today's anime"
+    };
+  }
+
+  if (guessCount === 1) {
+    return {
+      emoji: "🔥",
+      tagline: "First try!"
+    };
+  }
+
+  if (guessCount === 2) {
+    return {
+      emoji: "⚡",
+      tagline: "Second guess!"
+    };
+  }
+
+  if (guessCount <= 4) {
+    return {
+      emoji: "🎯",
+      tagline: `Got it in ${guessCount}!`
+    };
+  }
+
+  if (guessCount <= 6) {
+    return {
+      emoji: "😅",
+      tagline: "That was close!"
+    };
+  }
+
+  return {
+    emoji: "😰",
+    tagline: "Down to the wire!"
+  };
+}
+
+/**
  * Generate the complete share text for social platforms
  */
 export function generateShareText({
-  date,
   solved,
   guessCount,
   maxGuesses = 8,
-  siteUrl = "https://anihunter.com"
+  siteUrl = "anihunter.com"
 }: ShareTextParams): string {
-  // Get engaging message
-  const message = getResultMessage(guessCount, solved);
-
-  // Score display
-  const scoreEmoji = solved ? "🏆" : "💀";
-  const scoreText = solved
-    ? `Solved in ${guessCount} ${guessCount === 1 ? "try" : "tries"} ${scoreEmoji}`
-    : `Failed ${scoreEmoji}`;
-
-  // Generate blocks in a single line
+  const { emoji, tagline } = getShareHeader(guessCount, solved);
   const blocks = generateGuessBlocks(guessCount, solved, maxGuesses);
 
-  // Combine all parts
-  return `ANIHUNTER ${date}\n\n${message}\n\n${scoreText}\n${blocks}\n\n${siteUrl}`;
-}
+  if (solved) {
+    return `${emoji} AniHunter
+🎌 Anime Trivia
+✅ ${tagline}
 
-/**
- * Generate a shorter share text (single line) for platforms with character limits
- */
-export function generateShortShareText({
-  date,
-  solved,
-  guessCount,
-  maxGuesses = 8,
-  siteUrl = "https://anihunter.com"
-}: ShareTextParams): string {
-  const scoreEmoji = solved ? "🏆" : "💀";
-  const scoreDisplay = solved ? `${guessCount}/${maxGuesses}` : `X/${maxGuesses}`;
-  const blocks = generateGuessBlocks(guessCount, solved, maxGuesses);
-
-  return `ANIHUNTER ${date} ${scoreEmoji} ${scoreDisplay} ${blocks} ${siteUrl}`;
-}
-
-/**
- * Generate share text with custom message
- */
-export function generateCustomShareText({
-  date,
-  solved,
-  guessCount,
-  maxGuesses = 8,
-  siteUrl = "https://anihunter.com",
-  customMessage
-}: ShareTextParams & { customMessage?: string }): string {
-  const baseText = generateShareText({ date, solved, guessCount, maxGuesses, siteUrl });
-
-  if (customMessage) {
-    return `${customMessage}\n\n${baseText}`;
+${blocks}
+${siteUrl}`;
   }
 
-  return baseText;
+  return `${emoji} AniHunter
+❌ ${tagline}
+
+${blocks}
+Try tomorrow!
+${siteUrl}`;
+}
+
+/**
+ * Generate share URL for Twitter/X
+ */
+export function getTwitterShareUrl(shareText: string): string {
+  const encoded = encodeURIComponent(shareText);
+  return `https://twitter.com/intent/tweet?text=${encoded}`;
+}
+
+/**
+ * Generate share URL for Facebook
+ * Note: Facebook doesn't support pre-filled text, so we share the URL
+ */
+export function getFacebookShareUrl(siteUrl: string = "https://anihunter.com"): string {
+  const encoded = encodeURIComponent(siteUrl);
+  return `https://www.facebook.com/sharer/sharer.php?u=${encoded}`;
+}
+
+/**
+ * Copy text and open Instagram (user pastes manually)
+ * Instagram doesn't support direct sharing from web
+ */
+export function getInstagramInstructions(): string {
+  return "Text copied! Open Instagram and paste in your story or post.";
 }
 
 // Example outputs:
 //
 // First try win:
-// ANIHUNTER 2026-01-31
+// 🔥 AniHunter
+// 🎌 Anime Trivia
+// ✅ First try!
 //
-// First try. No hints needed.
+// 🟩⬛⬛⬛⬛⬛⬛⬛
+// anihunter.com
 //
-// Solved in 1 try 🏆
-// ✅⬜⬜⬜⬜⬜⬜⬜
+// 4 tries:
+// 🎯 AniHunter
+// 🎌 Anime Trivia
+// ✅ Got it in 4!
 //
-// https://anihunter.com
-//
-// 3 tries:
-// ANIHUNTER 2026-01-31
-//
-// Got it in 3 tries!
-//
-// Solved in 3 tries 🏆
-// ❌❌✅⬜⬜⬜⬜⬜
-//
-// https://anihunter.com
+// ⬛⬛⬛🟩⬛⬛⬛⬛
+// anihunter.com
 //
 // Failed:
-// ANIHUNTER 2026-01-31
+// 😵 AniHunter
+// ❌ I missed today's anime
 //
-// This one fought back.
-//
-// Failed 💀
-// ❌❌❌❌❌❌❌❌
-//
-// https://anihunter.com
+// ⬛⬛⬛⬛⬛⬛⬛⬛
+// Try tomorrow!
+// anihunter.com
