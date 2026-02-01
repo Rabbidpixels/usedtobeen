@@ -11,7 +11,7 @@ export const Footer = () => {
           New puzzle every day at midnight
         </div>
 
-        {/* Facebook Link - above the divider */}
+        {/* Facebook Link - large image like AniHunter */}
         <a
           href="https://www.facebook.com/profile.php?id=61587457495365"
           target="_blank"
@@ -19,7 +19,7 @@ export const Footer = () => {
           className="hover:opacity-80 transition-opacity"
           aria-label="Follow us on Facebook"
         >
-          <img src="/facebook.png" alt="Follow us on Facebook" className="h-12 w-auto object-contain" />
+          <img src="/facebook.png" alt="Follow us on Facebook" className="h-32 md:h-40 w-auto object-contain" />
         </a>
 
         {/* Navigation Links */}
@@ -47,6 +47,12 @@ export const Footer = () => {
             className="font-display text-sm hover:underline underline-offset-4"
           >
             TERMS
+          </Link>
+          <Link
+            to="/contact"
+            className="font-display text-sm hover:underline underline-offset-4"
+          >
+            CONTACT
           </Link>
         </nav>
 
