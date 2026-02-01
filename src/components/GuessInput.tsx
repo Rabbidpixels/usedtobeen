@@ -60,7 +60,7 @@ export const GuessInput = ({
             type="text"
             value={value}
             onChange={(e) => setValue(e.target.value)}
-            placeholder="Enter anime title..."
+            placeholder="What used to be..."
             disabled={disabled}
             className={cn(
               "manga-input flex-1 disabled:opacity-50 transition-all",
