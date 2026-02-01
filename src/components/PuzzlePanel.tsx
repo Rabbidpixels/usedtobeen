@@ -76,7 +76,7 @@ export const PuzzlePanel = ({
       )}
 
       <div className="relative p-8 md:p-12 text-center">
-        <p className="clue-badge mb-6">The Anime Is...</p>
+        <p className="clue-badge mb-6">It used to be...</p>
 
         <div className="relative inline-block">
           <h2 className={cn(

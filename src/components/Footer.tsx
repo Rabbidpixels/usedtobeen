@@ -10,18 +10,6 @@ export const Footer = () => {
         <div className="font-body text-sm text-muted-foreground text-center">
           New puzzle every day at midnight
         </div>
-        <a
-          href="https://www.facebook.com/profile.php?id=61587474022583"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block transition-opacity hover:opacity-80"
-        >
-          <img
-            src="/footer.png"
-            alt="Follow us on Facebook"
-            className="h-48 md:h-60 w-auto object-contain"
-          />
-        </a>
 
         {/* Navigation Links */}
         <nav className="flex flex-wrap justify-center gap-4 md:gap-6 pt-4 border-t-2 border-foreground w-full">
@@ -49,17 +37,11 @@ export const Footer = () => {
           >
             TERMS
           </Link>
-          <Link
-            to="/contact"
-            className="font-display text-sm hover:underline underline-offset-4"
-          >
-            CONTACT
-          </Link>
         </nav>
 
         {/* Copyright */}
         <p className="font-body text-xs text-muted-foreground text-center">
-          © {currentYear} AniHunter. Not affiliated with any anime studios.
+          © {currentYear} usedtobeen
         </p>
       </div>
     </MangaPanel>

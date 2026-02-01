@@ -5,12 +5,12 @@ const Privacy = () => {
     <PageLayout title="Privacy Policy">
       <p className="text-lg mb-6">
         We believe in being transparent about data. Here's the plain-English
-        version of what AniHunter collects, why, and how you stay in control.
+        version of what usedtobeen collects, why, and how you stay in control.
       </p>
 
       <h2 className="font-display text-xl mt-8 mb-4">The Short Version</h2>
       <p className="mb-4">
-        AniHunter is a free trivia game. We don't require accounts or collect
+        usedtobeen is a free trivia game. We don't require accounts or collect
         personal information like your name or email. We use cookies for ads
         and save your game progress locally on your device. That's the gist.
       </p>
@@ -31,7 +31,7 @@ const Privacy = () => {
 
       <h2 className="font-display text-xl mt-8 mb-4">Cookies and Advertising</h2>
       <p className="mb-4">
-        We display ads through Google AdSense to keep AniHunter free. Google
+        We display ads through Google AdSense to keep usedtobeen free. Google
         and its advertising partners use cookies to show you relevant ads based
         on your interests and browsing activity across websites.
       </p>
@@ -76,14 +76,14 @@ const Privacy = () => {
 
       <h2 className="font-display text-xl mt-8 mb-4">Analytics</h2>
       <p className="mb-4">
-        We use analytics to understand how people play AniHunter — things like
+        We use analytics to understand how people play usedtobeen — things like
         page views, popular features, and general usage patterns. This data is
         aggregated and anonymous. We can't identify individual visitors.
       </p>
 
       <h2 className="font-display text-xl mt-8 mb-4">Children's Privacy</h2>
       <p className="mb-4">
-        AniHunter is designed for general audiences. We do not knowingly collect
+        usedtobeen is designed for general audiences. We do not knowingly collect
         personal information from children under 13. Since we don't require
         registration or collect identifying information, children can play
         without providing personal data. If you believe a child has somehow
@@ -108,16 +108,16 @@ const Privacy = () => {
       <p className="mb-4">
         Questions about privacy? Email us at{" "}
         <a
-          href="mailto:contact@anihunter.com"
+          href="mailto:hello@usedtobeen.com"
           className="underline hover:no-underline"
         >
-          contact@anihunter.com
+          hello@usedtobeen.com
         </a>
         .
       </p>
 
       <p className="text-sm text-muted-foreground mt-8">
-        Last updated: January 2025
+        Last updated: February 2026
       </p>
     </PageLayout>
   );

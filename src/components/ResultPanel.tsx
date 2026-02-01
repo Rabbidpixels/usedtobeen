@@ -118,7 +118,7 @@ export const ResultPanel = ({
   // Get emotional header based on result
   const getEmotionalHeader = () => {
     if (!solved) {
-      return { emoji: "😵", title: "DEFEAT", subtitle: "I missed today's anime" };
+      return { emoji: "😵", title: "DEFEAT", subtitle: "My memory failed me today" };
     }
     if (guessCount === 1) {
       return { emoji: "🔥", title: "LEGENDARY!", subtitle: "First try!" };
@@ -177,8 +177,8 @@ export const ResultPanel = ({
           </div>
 
           {/* Taglines */}
-          <p className="font-display text-xl md:text-2xl mb-1">How well do you know Anime?</p>
-          <p className="font-body text-muted-foreground mb-8">Try your luck at trivia.</p>
+          <p className="font-display text-xl md:text-2xl mb-1">How well do you remember?</p>
+          <p className="font-body text-muted-foreground mb-8">Test your nostalgia.</p>
 
           {/* Social Share Buttons */}
           <div className="mb-6">

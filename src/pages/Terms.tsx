@@ -4,58 +4,58 @@ const Terms = () => {
   return (
     <PageLayout title="Terms of Service">
       <p className="text-lg mb-6">
-        These are the ground rules for using AniHunter. Nothing complicated —
+        These are the ground rules for using usedtobeen. Nothing complicated —
         we're a trivia game, not a legal minefield.
       </p>
 
-      <h2 className="font-display text-xl mt-8 mb-4">What AniHunter Is</h2>
+      <h2 className="font-display text-xl mt-8 mb-4">What usedtobeen Is</h2>
       <p className="mb-4">
-        AniHunter is a free entertainment site. We make anime trivia puzzles
-        for fun. We don't provide educational certifications, professional
-        anime consulting, or any services beyond "guess this show."
+        usedtobeen is a free entertainment site. We make nostalgia trivia
+        puzzles for fun. We don't provide historical certifications, professional
+        consulting, or any services beyond "guess this thing from the past."
       </p>
 
       <h2 className="font-display text-xl mt-8 mb-4">We're Independent</h2>
       <p className="mb-4">
-        AniHunter has no affiliation with any anime studios, production
-        committees, streaming platforms, manga publishers, or licensors. We're
-        fans making a fan project. All anime titles, characters, and related
-        properties belong to their respective creators and rights holders.
+        usedtobeen has no affiliation with any of the brands, companies, or
+        products featured in our puzzles. We're not sponsored by anyone, and
+        mentioning something doesn't mean we endorse it (or that it endorses us).
       </p>
       <p className="mb-4">
-        References to specific anime are for trivia purposes only and don't
-        imply endorsement or partnership.
+        All trademarks, product names, and company names belong to their
+        respective owners. References are for trivia and educational purposes
+        only.
       </p>
 
       <h2 className="font-display text-xl mt-8 mb-4">Accuracy</h2>
       <p className="mb-4">
-        We research our puzzles, but anime databases aren't perfect and neither
-        are we. Episode counts vary by region. Release dates depend on who you
-        ask. Some shows have multiple official English titles. We do our best,
-        but if you spot an error, tell us — don't use AniHunter to settle bets
-        or win arguments.
+        We research our puzzles, but history is messy and memories are unreliable.
+        Dates vary by source. Some things had different names in different places.
+        We do our best, but if you spot an error, tell us — don't use usedtobeen
+        to settle bets or win arguments about when exactly something stopped
+        existing.
       </p>
 
       <h2 className="font-display text-xl mt-8 mb-4">Liability</h2>
       <p className="mb-4">
-        AniHunter is provided as-is. We're not liable for incorrect trivia
-        answers, lost streaks due to browser issues, debates started at watch
-        parties, or any other consequences of using the site. Play at your own
-        (extremely low) risk.
+        usedtobeen is provided as-is. We're not liable for incorrect trivia
+        answers, lost streaks due to browser issues, heated debates about whether
+        something counts as "discontinued," or any other consequences of using
+        the site. Play at your own (extremely low) risk.
       </p>
 
       <h2 className="font-display text-xl mt-8 mb-4">Fair Play</h2>
       <p className="mb-4">
-        Use AniHunter the way it's meant to be used: play the daily puzzle,
-        share your results, have fun. Don't scrape content, don't try to break
-        things, don't use bots, and don't do anything that ruins the experience
-        for others.
+        Use usedtobeen the way it's meant to be used: play the daily puzzle,
+        share your results, have fun remembering. Don't scrape content, don't
+        try to break things, don't use bots, and don't do anything that ruins
+        the experience for others.
       </p>
 
       <h2 className="font-display text-xl mt-8 mb-4">Updates</h2>
       <p className="mb-4">
         We may revise these terms if needed. Changes take effect when posted.
-        If you keep using AniHunter after an update, you're accepting the new
+        If you keep using usedtobeen after an update, you're accepting the new
         terms.
       </p>
 
@@ -63,16 +63,16 @@ const Terms = () => {
       <p className="mb-4">
         Something unclear? Contact us at{" "}
         <a
-          href="mailto:contact@anihunter.com"
+          href="mailto:hello@usedtobeen.com"
           className="underline hover:no-underline"
         >
-          contact@anihunter.com
+          hello@usedtobeen.com
         </a>
         .
       </p>
 
       <p className="text-sm text-muted-foreground mt-8">
-        Last updated: January 2025
+        Last updated: February 2026
       </p>
     </PageLayout>
   );

@@ -33,17 +33,11 @@ export const SiteFooter = () => {
           >
             TERMS
           </Link>
-          <Link
-            to="/contact"
-            className="font-display text-sm hover:underline underline-offset-4"
-          >
-            CONTACT
-          </Link>
         </nav>
 
         {/* Copyright */}
         <p className="font-body text-xs text-muted-foreground text-center">
-          © {currentYear} AniHunter. Not affiliated with any anime studios.
+          © {currentYear} usedtobeen
         </p>
       </div>
     </MangaPanel>

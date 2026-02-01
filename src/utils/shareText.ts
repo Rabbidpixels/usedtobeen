@@ -1,6 +1,6 @@
 /**
- * Generates engaging social share content for AniHunter game results
- * Designed for maximum shareability with emotional copy
+ * Generates engaging social share content for usedtobeen game results
+ * Designed for maximum shareability with nostalgic copy
  */
 
 export interface ShareTextParams {
@@ -8,7 +8,7 @@ export interface ShareTextParams {
   solved: boolean;        // Whether the puzzle was solved
   guessCount: number;     // Number of guesses made (1-8)
   maxGuesses?: number;    // Maximum guesses allowed (default: 8)
-  siteUrl?: string;       // Site URL to include (default: anihunter.com)
+  siteUrl?: string;       // Site URL to include (default: usedtobeen.com)
 }
 
 /**
@@ -43,7 +43,7 @@ function getShareHeader(guessCount: number, solved: boolean): { emoji: string; t
   if (!solved) {
     return {
       emoji: "😵",
-      tagline: "I missed today's anime"
+      tagline: "My memory failed me today"
     };
   }
 
@@ -88,21 +88,21 @@ export function generateShareText({
   solved,
   guessCount,
   maxGuesses = 8,
-  siteUrl = "anihunter.com"
+  siteUrl = "usedtobeen.com"
 }: ShareTextParams): string {
   const { emoji, tagline } = getShareHeader(guessCount, solved);
   const blocks = generateGuessBlocks(guessCount, solved, maxGuesses);
 
   if (solved) {
-    return `${emoji} AniHunter
-🎌 Anime Trivia
+    return `${emoji} usedtobeen
+📼 Nostalgia Trivia
 ✅ ${tagline}
 
 ${blocks}
 ${siteUrl}`;
   }
 
-  return `${emoji} AniHunter
+  return `${emoji} usedtobeen
 ❌ ${tagline}
 
 ${blocks}
@@ -122,7 +122,7 @@ export function getTwitterShareUrl(shareText: string): string {
  * Generate share URL for Facebook
  * Note: Facebook doesn't support pre-filled text, so we share the URL
  */
-export function getFacebookShareUrl(siteUrl: string = "https://anihunter.com"): string {
+export function getFacebookShareUrl(siteUrl: string = "https://usedtobeen.com"): string {
   const encoded = encodeURIComponent(siteUrl);
   return `https://www.facebook.com/sharer/sharer.php?u=${encoded}`;
 }
@@ -138,25 +138,25 @@ export function getInstagramInstructions(): string {
 // Example outputs:
 //
 // First try win:
-// 🔥 AniHunter
-// 🎌 Anime Trivia
+// 🔥 usedtobeen
+// 📼 Nostalgia Trivia
 // ✅ First try!
 //
 // 🟩⬛⬛⬛⬛⬛⬛⬛
-// anihunter.com
+// usedtobeen.com
 //
 // 4 tries:
-// 🎯 AniHunter
-// 🎌 Anime Trivia
+// 🎯 usedtobeen
+// 📼 Nostalgia Trivia
 // ✅ Got it in 4!
 //
 // ⬛⬛⬛🟩⬛⬛⬛⬛
-// anihunter.com
+// usedtobeen.com
 //
 // Failed:
-// 😵 AniHunter
-// ❌ I missed today's anime
+// 😵 usedtobeen
+// ❌ My memory failed me today
 //
 // ⬛⬛⬛⬛⬛⬛⬛⬛
 // Try tomorrow!
-// anihunter.com
+// usedtobeen.com

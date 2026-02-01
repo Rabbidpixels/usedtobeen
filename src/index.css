@@ -6,38 +6,39 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 0%;
-    --page: 30 30% 95%;
+    /* Warm, nostalgic cream/off-white palette */
+    --background: 40 33% 98%;
+    --foreground: 30 10% 15%;
+    --page: 35 30% 93%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 0%;
+    --card: 40 33% 98%;
+    --card-foreground: 30 10% 15%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 0%;
+    --popover: 40 33% 98%;
+    --popover-foreground: 30 10% 15%;
 
-    --primary: 0 0% 0%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 30 10% 15%;
+    --primary-foreground: 40 33% 98%;
 
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 0%;
+    --secondary: 35 20% 94%;
+    --secondary-foreground: 30 10% 15%;
 
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 40%;
+    --muted: 35 15% 92%;
+    --muted-foreground: 30 5% 45%;
 
-    --accent: 0 0% 96%;
-    --accent-foreground: 0 0% 0%;
+    --accent: 35 20% 94%;
+    --accent-foreground: 30 10% 15%;
 
-    --destructive: 0 0% 0%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 30 10% 15%;
+    --destructive-foreground: 40 33% 98%;
 
-    --border: 0 0% 0%;
-    --input: 0 0% 0%;
-    --ring: 0 0% 0%;
+    --border: 30 10% 15%;
+    --input: 30 10% 15%;
+    --ring: 30 10% 15%;
 
     --radius: 0px;
 
-    /* Manga-specific tokens */
+    /* Nostalgic design tokens */
     --panel-border: 4px;
     --panel-border-thick: 6px;
     --font-display: 'Anton', sans-serif;
@@ -45,24 +46,25 @@
   }
 
   .dark {
-    --background: 0 0% 8%;
-    --foreground: 0 0% 95%;
-    --page: 240 10% 12%;
-    --card: 0 0% 8%;
-    --card-foreground: 0 0% 95%;
-    --popover: 0 0% 8%;
-    --popover-foreground: 0 0% 95%;
-    --primary: 0 0% 95%;
-    --primary-foreground: 0 0% 8%;
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 95%;
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 60%;
-    --accent: 0 0% 15%;
-    --accent-foreground: 0 0% 95%;
-    --border: 0 0% 95%;
-    --input: 0 0% 95%;
-    --ring: 0 0% 95%;
+    /* Warm dark theme for nostalgia */
+    --background: 30 15% 10%;
+    --foreground: 35 20% 92%;
+    --page: 30 10% 8%;
+    --card: 30 15% 10%;
+    --card-foreground: 35 20% 92%;
+    --popover: 30 15% 10%;
+    --popover-foreground: 35 20% 92%;
+    --primary: 35 20% 92%;
+    --primary-foreground: 30 15% 10%;
+    --secondary: 30 10% 18%;
+    --secondary-foreground: 35 20% 92%;
+    --muted: 30 10% 18%;
+    --muted-foreground: 35 10% 55%;
+    --accent: 30 10% 18%;
+    --accent-foreground: 35 20% 92%;
+    --border: 35 20% 92%;
+    --input: 35 20% 92%;
+    --ring: 35 20% 92%;
   }
 }
 

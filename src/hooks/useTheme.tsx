@@ -10,7 +10,7 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-const THEME_STORAGE_KEY = "anihunter-theme";
+const THEME_STORAGE_KEY = "usedtobeen-theme";
 
 function getInitialTheme(): Theme {
   // Check localStorage first

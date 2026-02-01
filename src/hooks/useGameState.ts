@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { getTodaysPuzzle, getTodaysCategory, clueOrder, AnimeData, Category, getTodayString } from "@/data/animeData";
+import { getTodaysPuzzle, getTodaysCategory, clueOrder, NostalgiaData, Category, getTodayString } from "@/data/nostalgiaData";
 import { generateShareText as createShareText } from "@/utils/shareText";
 
 interface GameState {
@@ -13,7 +13,7 @@ interface GameState {
 }
 
 const MAX_GUESSES = 8;
-const STORAGE_KEY = "anihunter-state";
+const STORAGE_KEY = "usedtobeen-state";
 
 const getInitialState = (): GameState => ({
   guesses: [],
@@ -26,7 +26,7 @@ const getInitialState = (): GameState => ({
 });
 
 export const useGameState = () => {
-  const [puzzle] = useState<AnimeData>(getTodaysPuzzle);
+  const [puzzle] = useState<NostalgiaData>(getTodaysPuzzle);
   const [category] = useState<Category>(getTodaysCategory);
   const [gameState, setGameState] = useState<GameState>(getInitialState);
   const [isShaking, setIsShaking] = useState(false);

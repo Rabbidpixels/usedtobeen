@@ -5,18 +5,18 @@ const Contact = () => {
   return (
     <PageLayout title="Contact Us">
       <p className="text-lg mb-6">
-        Found a bug? Spotted wrong info in a puzzle? Have an anime you think we
-        should feature? We want to hear it.
+        Found a bug? Spotted wrong info in a puzzle? Have a nostalgic memory
+        you think deserves to be featured? We want to hear it.
       </p>
 
       <div className="my-8 p-6 border-4 border-foreground bg-background">
         <div className="flex items-center justify-center gap-3">
           <Mail className="w-6 h-6" />
           <a
-            href="mailto:contact@anihunter.com"
+            href="mailto:hello@usedtobeen.com"
             className="font-display text-xl md:text-2xl hover:underline underline-offset-4"
           >
-            contact@anihunter.com
+            hello@usedtobeen.com
           </a>
         </div>
       </div>
@@ -28,13 +28,13 @@ const Contact = () => {
           what happened, what browser you're using, and we'll look into it.
         </li>
         <li>
-          <strong>Trivia corrections:</strong> Wrong episode count? Incorrect
-          studio? Different release year? Let us know with a source and we'll
-          fix it.
+          <strong>Trivia corrections:</strong> Wrong date? Incorrect details?
+          Different regional name? Let us know with a source and we'll fix it.
         </li>
         <li>
-          <strong>Anime suggestions:</strong> Got a title you think deserves to
-          be a puzzle? We're always looking for good additions.
+          <strong>Nostalgia suggestions:</strong> Know something that used to
+          exist and would make a great puzzle? We're always looking for
+          additions.
         </li>
         <li>
           <strong>General feedback:</strong> Thoughts on the game, feature ideas,
@@ -49,22 +49,8 @@ const Contact = () => {
         everything, even if we can't respond to every message individually.
       </p>
 
-      <h2 className="font-display text-xl mt-8 mb-4">Follow Along</h2>
-      <p className="mb-4">
-        For announcements and updates, follow us on{" "}
-        <a
-          href="https://www.facebook.com/profile.php?id=61587474022583"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline hover:no-underline"
-        >
-          Facebook
-        </a>
-        .
-      </p>
-
       <p className="text-muted-foreground mt-8">
-        Thanks for playing — and for helping make AniHunter better.
+        Thanks for playing — and for helping make usedtobeen better.
       </p>
     </PageLayout>
   );

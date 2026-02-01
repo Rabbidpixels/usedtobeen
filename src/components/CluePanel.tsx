@@ -1,16 +1,16 @@
 import { MangaPanel } from "./MangaPanel";
-import { clueLabels, AnimeData } from "@/data/animeData";
+import { clueLabels, NostalgiaData } from "@/data/nostalgiaData";
 import { cn } from "@/lib/utils";
 
 interface CluePanelProps {
-  clueKey: keyof AnimeData["clues"];
+  clueKey: keyof NostalgiaData["clues"];
   clueValue: string | number;
   index: number;
   isNew?: boolean;
 }
 
 export const CluePanel = ({ clueKey, clueValue, index, isNew }: CluePanelProps) => {
-  const isWide = clueKey === "synopsis" || clueKey === "protagonist";
+  const isWide = clueKey === "description" || clueKey === "endingNote";
 
   return (
     <MangaPanel
