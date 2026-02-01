@@ -4,8 +4,18 @@ import { ThemeToggle } from "./ThemeToggle";
 export const HeroPanel = () => {
   return (
     <MangaPanel thick className="relative overflow-hidden">
-      <div className="halftone-light absolute inset-0 opacity-50" />
-      <div className="relative px-6 py-12 md:px-12 md:py-20">
+      {/* Full-width Hero Image */}
+      <div className="w-full">
+        <img
+          src="/hero.png"
+          alt="usedtobeen"
+          className="w-full h-48 md:h-64 lg:h-80 object-cover object-center"
+        />
+      </div>
+
+      {/* Content below image */}
+      <div className="halftone-light absolute inset-0 opacity-30 pointer-events-none" />
+      <div className="relative px-6 py-8 md:px-12 md:py-12">
         <div className="mb-4 flex items-center justify-between">
           <div className="flex flex-wrap items-center gap-2 md:gap-3">
             <span className="clue-badge-filled text-[10px] md:text-xs">Daily Challenge</span>
@@ -19,29 +29,16 @@ export const HeroPanel = () => {
           <ThemeToggle />
         </div>
 
-        <div className="flex flex-col md:flex-row items-center gap-6 md:gap-10">
-          {/* Hero Image */}
-          <div className="flex-shrink-0">
-            <img
-              src="/hero.png"
-              alt="usedtobeen"
-              className="w-32 h-32 md:w-48 md:h-48 object-contain"
-            />
-          </div>
+        <h1 className="manga-title-lg text-5xl md:text-7xl lg:text-8xl leading-none mb-6 animate-hero-slide">
+          used
+          <br />
+          <span className="manga-title-outline">tobeen</span>
+        </h1>
 
-          <div>
-            <h1 className="manga-title-lg text-5xl md:text-7xl lg:text-8xl leading-none mb-6 animate-hero-slide">
-              used
-              <br />
-              <span className="manga-title-outline">tobeen</span>
-            </h1>
-
-            <p className="font-body text-lg md:text-xl max-w-md font-medium animate-fade-in">
-              Guess the thing that used to be. You get 8 chances.{" "}
-              <span className="font-bold">You remember this. Or maybe you don't.</span>
-            </p>
-          </div>
-        </div>
+        <p className="font-body text-lg md:text-xl max-w-md font-medium animate-fade-in">
+          Guess the thing that used to be. You get 8 chances.{" "}
+          <span className="font-bold">You remember this. Or maybe you don't.</span>
+        </p>
       </div>
 
       {/* Decorative speed lines */}

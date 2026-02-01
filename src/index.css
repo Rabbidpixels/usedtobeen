@@ -6,35 +6,35 @@
 
 @layer base {
   :root {
-    /* Warm, nostalgic cream/off-white palette */
-    --background: 40 33% 98%;
-    --foreground: 30 10% 15%;
-    --page: 35 30% 93%;
+    /* 90s Pastel Color Palette */
+    --background: 330 50% 96%;      /* Soft pink background */
+    --foreground: 280 30% 25%;      /* Deep purple text */
+    --page: 180 40% 92%;            /* Mint page background */
 
-    --card: 40 33% 98%;
-    --card-foreground: 30 10% 15%;
+    --card: 50 60% 95%;             /* Soft yellow card */
+    --card-foreground: 280 30% 25%;
 
-    --popover: 40 33% 98%;
-    --popover-foreground: 30 10% 15%;
+    --popover: 330 50% 96%;
+    --popover-foreground: 280 30% 25%;
 
-    --primary: 30 10% 15%;
-    --primary-foreground: 40 33% 98%;
+    --primary: 280 40% 60%;         /* Lavender purple primary */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 35 20% 94%;
-    --secondary-foreground: 30 10% 15%;
+    --secondary: 180 45% 85%;       /* Mint green secondary */
+    --secondary-foreground: 280 30% 25%;
 
-    --muted: 35 15% 92%;
-    --muted-foreground: 30 5% 45%;
+    --muted: 200 40% 90%;           /* Baby blue muted */
+    --muted-foreground: 280 20% 45%;
 
-    --accent: 35 20% 94%;
-    --accent-foreground: 30 10% 15%;
+    --accent: 25 70% 85%;           /* Peach accent */
+    --accent-foreground: 280 30% 25%;
 
-    --destructive: 30 10% 15%;
-    --destructive-foreground: 40 33% 98%;
+    --destructive: 0 60% 70%;       /* Soft coral red */
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 30 10% 15%;
-    --input: 30 10% 15%;
-    --ring: 30 10% 15%;
+    --border: 280 30% 35%;          /* Purple border */
+    --input: 280 30% 35%;
+    --ring: 280 40% 60%;
 
     --radius: 0px;
 
@@ -46,25 +46,25 @@
   }
 
   .dark {
-    /* Warm dark theme for nostalgia */
-    --background: 30 15% 10%;
-    --foreground: 35 20% 92%;
-    --page: 30 10% 8%;
-    --card: 30 15% 10%;
-    --card-foreground: 35 20% 92%;
-    --popover: 30 15% 10%;
-    --popover-foreground: 35 20% 92%;
-    --primary: 35 20% 92%;
-    --primary-foreground: 30 15% 10%;
-    --secondary: 30 10% 18%;
-    --secondary-foreground: 35 20% 92%;
-    --muted: 30 10% 18%;
-    --muted-foreground: 35 10% 55%;
-    --accent: 30 10% 18%;
-    --accent-foreground: 35 20% 92%;
-    --border: 35 20% 92%;
-    --input: 35 20% 92%;
-    --ring: 35 20% 92%;
+    /* 90s Dark pastel theme */
+    --background: 280 25% 15%;      /* Deep purple background */
+    --foreground: 330 50% 90%;      /* Soft pink text */
+    --page: 280 20% 12%;
+    --card: 280 25% 18%;
+    --card-foreground: 330 50% 90%;
+    --popover: 280 25% 15%;
+    --popover-foreground: 330 50% 90%;
+    --primary: 180 45% 65%;         /* Mint primary in dark */
+    --primary-foreground: 280 25% 15%;
+    --secondary: 280 20% 25%;
+    --secondary-foreground: 330 50% 90%;
+    --muted: 280 20% 22%;
+    --muted-foreground: 330 30% 60%;
+    --accent: 25 50% 60%;           /* Peach in dark */
+    --accent-foreground: 280 25% 15%;
+    --border: 330 40% 75%;
+    --input: 330 40% 75%;
+    --ring: 180 45% 65%;
   }
 }
 
