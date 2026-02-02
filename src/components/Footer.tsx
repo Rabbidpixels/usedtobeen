@@ -7,7 +7,7 @@ export const Footer = () => {
   return (
     <MangaPanel className="mt-8">
       <div className="p-6 flex flex-col items-center">
-        <div className="font-body text-sm text-muted-foreground text-center mb-3">
+        <div className="font-body text-sm text-muted-foreground text-center">
           New puzzle every day at midnight
         </div>
 
@@ -16,49 +16,62 @@ export const Footer = () => {
           href="https://www.facebook.com/profile.php?id=61587457495365"
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:opacity-80 transition-opacity mb-3"
+          className="hover:opacity-80 transition-opacity"
           aria-label="Follow us on Facebook"
         >
           <img src="/facebook.png" alt="Follow us on Facebook" className="h-48 md:h-56 lg:h-64 w-auto object-contain" />
         </a>
 
         {/* Navigation Links */}
-        <nav className="flex flex-wrap justify-center gap-4 md:gap-6 pt-3 border-t-2 border-foreground w-full">
-          <Link
-            to="/"
+        <nav className="flex flex-wrap justify-between items-center gap-4 md:gap-6 pt-3 border-t-2 border-foreground w-full">
+          {/* Daily Anime Trivia Button - Left Side */}
+          <a
+            href="https://anihunter.com"
+            target="_blank"
+            rel="noopener noreferrer"
             className="font-display text-sm hover:underline underline-offset-4"
           >
-            HOME
-          </Link>
-          <Link
-            to="/about"
-            className="font-display text-sm hover:underline underline-offset-4"
-          >
-            ABOUT
-          </Link>
-          <Link
-            to="/privacy"
-            className="font-display text-sm hover:underline underline-offset-4"
-          >
-            PRIVACY
-          </Link>
-          <Link
-            to="/terms"
-            className="font-display text-sm hover:underline underline-offset-4"
-          >
-            TERMS
-          </Link>
-          <Link
-            to="/contact"
-            className="font-display text-sm hover:underline underline-offset-4"
-          >
-            CONTACT
-          </Link>
+            Daily Anime Trivia
+          </a>
+
+          {/* Center Navigation Links */}
+          <div className="flex flex-wrap justify-center gap-4 md:gap-6">
+            <Link
+              to="/"
+              className="font-display text-sm hover:underline underline-offset-4"
+            >
+              HOME
+            </Link>
+            <Link
+              to="/about"
+              className="font-display text-sm hover:underline underline-offset-4"
+            >
+              ABOUT
+            </Link>
+            <Link
+              to="/privacy"
+              className="font-display text-sm hover:underline underline-offset-4"
+            >
+              PRIVACY
+            </Link>
+            <Link
+              to="/terms"
+              className="font-display text-sm hover:underline underline-offset-4"
+            >
+              TERMS
+            </Link>
+            <Link
+              to="/contact"
+              className="font-display text-sm hover:underline underline-offset-4"
+            >
+              CONTACT
+            </Link>
+          </div>
         </nav>
 
         {/* Copyright */}
         <p className="font-body text-xs text-muted-foreground text-center mt-4">
-          © {currentYear} usedtobeen
+          © {currentYear} usedtobeen - Product of RabbidpixelsLLC.
         </p>
       </div>
     </MangaPanel>
