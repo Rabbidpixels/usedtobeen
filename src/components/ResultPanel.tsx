@@ -43,7 +43,7 @@ export const ResultPanel = ({
   onCopyShare
 }: ResultPanelProps) => {
   const [copied, setCopied] = useState(false);
-  const [instagramCopied, setInstagramCopied] = useState(false);
+  const [socialCopied, setSocialCopied] = useState<string | null>(null);
   const [showVictoryShake, setShowVictoryShake] = useState(false);
 
   // Trigger victory shake animation when solved
@@ -65,22 +65,26 @@ export const ResultPanel = ({
     }
   };
 
-  const handleTwitterShare = () => {
+  const handleTwitterShare = async () => {
+    // Twitter supports pre-filled text, so just open
     const url = getTwitterShareUrl(shareText);
     window.open(url, "_blank", "width=550,height=420");
   };
 
-  const handleFacebookShare = () => {
+  const handleFacebookShare = async () => {
+    // Facebook doesn't support pre-filled text, copy first
+    await onCopyShare();
+    setSocialCopied("facebook");
+    setTimeout(() => setSocialCopied(null), 4000);
     const url = getFacebookShareUrl(shareText);
     window.open(url, "_blank", "width=550,height=420");
   };
 
   const handleInstagramShare = async () => {
-    const success = await onCopyShare();
-    if (success) {
-      setInstagramCopied(true);
-      setTimeout(() => setInstagramCopied(false), 3000);
-    }
+    // Instagram has no web share API, just copy
+    await onCopyShare();
+    setSocialCopied("instagram");
+    setTimeout(() => setSocialCopied(null), 4000);
   };
 
   // Generate result boxes
@@ -221,10 +225,12 @@ export const ResultPanel = ({
               </button>
             </div>
 
-            {/* Instagram copy feedback */}
-            {instagramCopied && (
+            {/* Social copy feedback */}
+            {socialCopied && (
               <p className="font-body text-sm text-green-600 dark:text-green-400 mt-3 animate-fade-in">
-                Copied! Paste in your Instagram story or post.
+                {socialCopied === "facebook"
+                  ? "Copied! Paste your results in the Facebook post."
+                  : "Copied! Paste in your Instagram story or post."}
               </p>
             )}
           </div>
