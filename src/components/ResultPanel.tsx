@@ -71,7 +71,7 @@ export const ResultPanel = ({
   };
 
   const handleFacebookShare = () => {
-    const url = getFacebookShareUrl();
+    const url = getFacebookShareUrl(shareText);
     window.open(url, "_blank", "width=550,height=420");
   };
 

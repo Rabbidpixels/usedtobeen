@@ -8,7 +8,7 @@ export interface ShareTextParams {
   solved: boolean;        // Whether the puzzle was solved
   guessCount: number;     // Number of guesses made (1-8)
   maxGuesses?: number;    // Maximum guesses allowed (default: 8)
-  siteUrl?: string;       // Site URL to include (default: usedtobeen.com)
+  siteUrl?: string;       // Site URL to include (default: https://usedtobeen.cool)
 }
 
 /**
@@ -34,6 +34,28 @@ export function generateGuessBlocks(
   }
 
   return blocks.join("");
+}
+
+/**
+ * Get performance title based on guess count
+ */
+function getPerformanceTitle(guessCount: number, solved: boolean): string {
+  if (!solved) {
+    return "DEFEATED";
+  }
+  if (guessCount === 1) {
+    return "LEGENDARY";
+  }
+  if (guessCount === 2) {
+    return "AMAZING";
+  }
+  if (guessCount <= 4) {
+    return "NICE";
+  }
+  if (guessCount <= 6) {
+    return "CLOSE ONE";
+  }
+  return "CLUTCH";
 }
 
 /**
@@ -88,21 +110,23 @@ export function generateShareText({
   solved,
   guessCount,
   maxGuesses = 8,
-  siteUrl = "usedtobeen.com"
+  siteUrl = "https://usedtobeen.cool"
 }: ShareTextParams): string {
   const { emoji, tagline } = getShareHeader(guessCount, solved);
   const blocks = generateGuessBlocks(guessCount, solved, maxGuesses);
+  const performanceTitle = getPerformanceTitle(guessCount, solved);
 
   if (solved) {
-    return `${emoji} usedtobeen
-📼 Nostalgia Trivia
+    return `${emoji} ${performanceTitle}!
+📼 usedtobeen - Nostalgia Trivia
 ✅ ${tagline}
 
 ${blocks}
 ${siteUrl}`;
   }
 
-  return `${emoji} usedtobeen
+  return `${emoji} ${performanceTitle}
+📼 usedtobeen - Nostalgia Trivia
 ❌ ${tagline}
 
 ${blocks}
@@ -120,11 +144,12 @@ export function getTwitterShareUrl(shareText: string): string {
 
 /**
  * Generate share URL for Facebook
- * Note: Facebook doesn't support pre-filled text, so we share the URL
+ * Uses quote parameter to include share text
  */
-export function getFacebookShareUrl(siteUrl: string = "https://usedtobeen.com"): string {
-  const encoded = encodeURIComponent(siteUrl);
-  return `https://www.facebook.com/sharer/sharer.php?u=${encoded}`;
+export function getFacebookShareUrl(shareText: string, siteUrl: string = "https://usedtobeen.cool"): string {
+  const encodedUrl = encodeURIComponent(siteUrl);
+  const encodedQuote = encodeURIComponent(shareText);
+  return `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${encodedQuote}`;
 }
 
 /**
@@ -138,25 +163,26 @@ export function getInstagramInstructions(): string {
 // Example outputs:
 //
 // First try win:
-// 🔥 usedtobeen
-// 📼 Nostalgia Trivia
+// 🔥 LEGENDARY!
+// 📼 usedtobeen - Nostalgia Trivia
 // ✅ First try!
 //
 // 🟩⬛⬛⬛⬛⬛⬛⬛
-// usedtobeen.com
+// https://usedtobeen.cool
 //
 // 4 tries:
-// 🎯 usedtobeen
-// 📼 Nostalgia Trivia
+// 🎯 NICE!
+// 📼 usedtobeen - Nostalgia Trivia
 // ✅ Got it in 4!
 //
 // ⬛⬛⬛🟩⬛⬛⬛⬛
-// usedtobeen.com
+// https://usedtobeen.cool
 //
 // Failed:
-// 😵 usedtobeen
+// 😵 DEFEATED
+// 📼 usedtobeen - Nostalgia Trivia
 // ❌ My memory failed me today
 //
 // ⬛⬛⬛⬛⬛⬛⬛⬛
 // Try tomorrow!
-// usedtobeen.com
+// https://usedtobeen.cool
