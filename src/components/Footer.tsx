@@ -6,24 +6,22 @@ export const Footer = () => {
 
   return (
     <MangaPanel className="mt-8">
-      <div className="p-6 flex flex-col items-center">
-        <div className="font-body text-sm text-muted-foreground text-center">
+      <div className="p-6 flex flex-col items-center gap-0">
+        <div className="font-body text-sm text-muted-foreground text-center -mb-2">
           New puzzle every day at midnight
         </div>
-
         {/* Facebook Link - large image */}
         <a
           href="https://www.facebook.com/profile.php?id=61587457495365"
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:opacity-80 transition-opacity"
+          className="hover:opacity-80 transition-opacity -my-2"
           aria-label="Follow us on Facebook"
         >
           <img src="/facebook.png" alt="Follow us on Facebook" className="h-48 md:h-56 lg:h-64 w-auto object-contain" />
         </a>
-
         {/* Navigation Links */}
-        <nav className="flex flex-wrap justify-between items-center gap-4 md:gap-6 pt-3 border-t-2 border-foreground w-full">
+        <nav className="flex flex-wrap justify-between items-center gap-4 md:gap-6 border-t-2 border-foreground w-full">
           {/* Daily Anime Trivia Button - Left Side */}
           <a
             href="https://anihunter.com"
