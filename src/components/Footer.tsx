@@ -1,8 +1,9 @@
+import { memo, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { MangaPanel } from "./MangaPanel";
 
-export const Footer = () => {
-  const currentYear = new Date().getFullYear();
+export const Footer = memo(() => {
+  const currentYear = useMemo(() => new Date().getFullYear(), []);
 
   return (
     <MangaPanel className="mt-8">
@@ -74,4 +75,4 @@ export const Footer = () => {
       </div>
     </MangaPanel>
   );
-};
+});

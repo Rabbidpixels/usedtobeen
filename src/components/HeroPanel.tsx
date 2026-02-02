@@ -1,7 +1,8 @@
+import { memo } from "react";
 import { MangaPanel } from "./MangaPanel";
 import { ThemeToggle } from "./ThemeToggle";
 
-export const HeroPanel = () => {
+export const HeroPanel = memo(() => {
   return (
     <MangaPanel thick className="relative overflow-hidden">
       {/* Hero Image fills entire panel */}
@@ -26,4 +27,4 @@ export const HeroPanel = () => {
       </div>
     </MangaPanel>
   );
-};
+});

@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { MangaPanel } from "./MangaPanel";
 import { clueLabels, NostalgiaData } from "@/data/nostalgiaData";
 import { cn } from "@/lib/utils";
@@ -9,7 +10,7 @@ interface CluePanelProps {
   isNew?: boolean;
 }
 
-export const CluePanel = ({ clueKey, clueValue, index, isNew }: CluePanelProps) => {
+export const CluePanel = memo(({ clueKey, clueValue, index, isNew }: CluePanelProps) => {
   const isWide = clueKey === "description" || clueKey === "endingNote";
 
   return (
@@ -42,4 +43,4 @@ export const CluePanel = ({ clueKey, clueValue, index, isNew }: CluePanelProps) 
       </div>
     </MangaPanel>
   );
-};
+});
